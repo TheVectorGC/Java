@@ -1,12 +1,9 @@
 package Palindrome;
 import java.util.Scanner;
 public class Palindrom {
-    public static void main(String[] args) {
-        String prodoljenie = "Да";
-        while(prodoljenie.equals("Да")) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите любую фразу или число");
-            String phrase = scanner.nextLine();
+    private Scanner scanner = new Scanner(System.in);
+    private String phrase;
+    public void palindrom() {
             int kolvo = phrase.length();
             int ch = 0;
             for (int i = 0; i < kolvo / 2; i++) {
@@ -23,9 +20,32 @@ public class Palindrom {
             }
             if (ch == 1) {
                 System.out.println("Это палиндром!");
-            }
-            System.out.println("Хотите продолжить? Да/Нет");
-            prodoljenie = scanner.nextLine();
         }
+    }
+    private void initialize() {
+        System.out.println("Введите любую фразу или число");
+        phrase = scanner.nextLine();
+    }
+    private void repeat() {
+        while (true) {
+            System.out.println("Хотите продолжить? Да/Нет");
+            String prodoljenie = scanner.nextLine();
+            switch (prodoljenie) {
+                case "Да":
+                    initialize();
+                    palindrom();
+                    break;
+                case "Нет":
+                    return;
+                default:
+                    System.out.println("Вы ввели неправильное значение");
+                    break;
+            }
+        }
+    }
+    public void start() {
+        initialize();
+        palindrom();
+        repeat();
     }
 }
